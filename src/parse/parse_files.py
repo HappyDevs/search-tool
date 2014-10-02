@@ -1,10 +1,15 @@
 #!/usr/bin/python
 import xml.etree.ElementTree as ET
+import json
 
 #configurations or params
 file = 'in.xml'
 orgs = ['participating-org', 'reporting_org', 'provider-org', 'receiver-org']
 result = {}
+res_dir = '../../resources/'
+conf_filename = 'file_map.json'
+conf_file = res_dir + conf_filename
+
 
 # methods
 
@@ -81,3 +86,31 @@ def parse(file, orgs, result, name, url):
 
 def parse_file(file, name, url):
     return parse(file, orgs, result, name, url)
+
+# map_file_content = run_download(file_map_name, action, org_list_url, pkg_url)
+
+# for k in map_file_content:
+#     file = map_file_content[k]['file']
+#     print 'START parsing ... ' + file
+#     name = map_file_content[k]['name']
+#     url = map_file_content[k]['url']
+#     res = parse.parse_file(file, name, url)
+#     print res
+#     print 'END parsing ... ' + map_file_content[k]['file']
+#
+# print 'END to process files'
+
+
+def run_parse():
+    with open(conf_file, 'r+') as f:
+        data = json.load(f)
+        no_files = data['0']['no_files']
+        print data['1']['url']
+        for i in range(1, no_files):
+            f_file = data[str(i)]['file']
+            f_url = data[str(i)]['url']
+            f_name = data[str(i)]['name']
+            print 'START parsing ... ' + f_file + ' from URL: ' + f_url
+            res = parse_file(f_file, f_name, f_url)
+            print res
+            print 'END parsing ... ' + f_file

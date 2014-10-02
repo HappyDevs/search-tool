@@ -3,7 +3,6 @@ import requests
 import json
 from io import StringIO
 import urllib
-import parse
 
 
 # get files from ckan
@@ -35,7 +34,7 @@ def get_files(file_map_name, action, org_list_url, pkg_url):
             i -= 1
             continue
         map_file_content[i] = {
-            'name': p_name, 'url': p_url, 'file': 'files/' + str(i) + '.xml'}
+            'name': p_name, 'url': p_url, 'file': files_dir + str(i) + '.xml'}
         print 'Finish download '
     map_file_content[0] = {'no_files': i}
     with open(file_map_name, 'w') as outfile:
@@ -101,25 +100,15 @@ def download_file(i, p_url):
 
 
 # some settings
-file_map_name = 'file_map.ini'
 base = 'http://iatiregistry.org/api/3/'
 action = base + 'action/'
 org_list_url = 'organization_list'
 pkg_url = 'package_search'
 files_dir = '../../resources/files/'
-
-# map_file_content = run_download(file_map_name, action, org_list_url, pkg_url)
-
-# for k in map_file_content:
-#     file = map_file_content[k]['file']
-#     print 'START parsing ... ' + file
-#     name = map_file_content[k]['name']
-#     url = map_file_content[k]['url']
-#     res = parse.parse_file(file, name, url)
-#     print res
-#     print 'END parsing ... ' + map_file_content[k]['file']
-#
-# print 'END to process files'
+res_dir = '../../resources/'
+conf_filename = 'file_map.json'
+conf_file = res_dir + conf_filename
+file_map_name = res_dir + conf_filename
 
 
 def run_download():
