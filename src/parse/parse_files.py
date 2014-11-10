@@ -101,7 +101,7 @@ def parse_file(file, name, url):
 # print 'END to process files'
 
 
-def run_parse():
+def run_parse(pusher):
     with open(conf_file, 'r+') as f:
         data = json.load(f)
         no_files = data['0']['no_files']
@@ -112,5 +112,6 @@ def run_parse():
             f_name = data[str(i)]['name']
             print 'START parsing ... ' + f_file + ' from URL: ' + f_url
             res = parse_file(f_file, f_name, f_url)
+            pusher.push(res)
             print res
             print 'END parsing ... ' + f_file

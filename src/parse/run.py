@@ -10,6 +10,12 @@ import getopt
 # parse_files.run_parse()
 
 
+class Pusher:
+
+    def push(self, org_dict):
+        pass
+
+
 def main(argv):
     action = ''
     try:
@@ -20,7 +26,7 @@ def main(argv):
     if action == 'download':
         get_files.run_download()
     elif action == 'parse':
-        parse_files.run_parse()
+        parse_files.run_parse(Pusher())
     else:
         print "Nothing to do. options are download or parse"
 
