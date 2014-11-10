@@ -59,13 +59,13 @@ def get_org_list(url):
 
 def get_packages_by_org_list(url, org_list):
     pkg_list = []
-    i = 0
+    #i = 0
     print 'get_packages_by_org_list'
     for org in org_list:
-        i += 1
+        #i += 1
         pkg_list = pkg_list + get_packages_by_org(url, org)
-        if i > 1:
-            break
+#         if i > 1:
+#             break
     print 'END get_packages_by_org_list'
     return pkg_list
 
