@@ -1,0 +1,31 @@
+INFO:requests.packages.urllib3.connectionpool:Starting new HTTP connection (1): iatiregistry.org
+INFO:requests.packages.urllib3.connectionpool:Starting new HTTP connection (1): iatiregistry.org
+INFO:requests.packages.urllib3.connectionpool:Starting new HTTP connection (1): iatiregistry.org
+INFO:requests.packages.urllib3.connectionpool:Starting new HTTP connection (1): iatiregistry.org
+INFO:requests.packages.urllib3.connectionpool:Starting new HTTP connection (1): iatiregistry.org
+INFO:requests.packages.urllib3.connectionpool:Starting new HTTP connection (1): iatiregistry.org
+INFO:requests.packages.urllib3.connectionpool:Starting new HTTP connection (1): iatiregistry.org
+INFO:requests.packages.urllib3.connectionpool:Starting new HTTP connection (1): iatiregistry.org
+INFO:requests.packages.urllib3.connectionpool:Starting new HTTP connection (1): iatiregistry.org
+INFO:requests.packages.urllib3.connectionpool:Starting new HTTP connection (1): iatiregistry.org
+INFO:root:downloaded: http://www.actionaid.org.uk/sites/default/files/IATI/1403611273.77.xml
+INFO:root:downloaded: http://maps.aidsalliance.org/iati/aidsalliance.xml
+INFO:root:downloaded: http://www.aidstream.org/public/files/xml/aai-np.xml
+INFO:root:downloaded: http://www.aidstream.org/public/files/xml/aai-in.xml
+INFO:root:downloaded: http://www.aidstream.org/public/files/xml/aai-vn.xml
+INFO:root:downloaded: http://www.actionaid.org.uk/sites/default/files/IATI/1403696951.85.xml
+INFO:root:downloaded: http://www.actionaid.org.uk/sites/default/files/IATI/1403611066.04.xml
+INFO:root:downloaded: http://www.aidstream.org/public/files/xml/aai-998.xml
+INFO:root:downloaded: http://www.aidstream.org/public/files/xml/aai-mw.xml
+INFO:root:downloaded: http://www.aidstream.org/public/files/xml/aai-tz.xml
+INFO:root:downloaded: http://www.actionaid.org.uk/sites/default/files/IATI/1403611248.25.xml
+INFO:root:downloaded: http://www.aidstream.org/files/xml/aauk-activities.xml
+INFO:root:downloaded: http://maps.aidsalliance.org/iati/organisation.xml
+INFO:root:downloaded: http://www.aidstream.org/public/files/xml/aai-mm.xml
+INFO:root:downloaded: http://www.aidstream.org/public/files/xml/aai-ug.xml
+INFO:root:downloaded: http://www.aidstream.org/public/files/xml/aai-bd.xml
+INFO:root:downloaded: http://www.aidstream.org/public/files/xml/aai-af.xml
+INFO:root:downloaded: http://www.actionaid.org.uk/sites/default/files/IATI/DFID_Contracts.xml
+INFO:root:downloaded: http://www.actionaid.org.uk/sites/default/files/IATI/1403611180.35.xml
+INFO:root:downloaded: http://www.aidstream.org/public/files/xml/aai-ng.xml
+INFO:root:downloaded: http://www.actionaid.org.uk/sites/default/files/IATI/1403611215.7.xml

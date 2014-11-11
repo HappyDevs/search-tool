@@ -3,9 +3,11 @@ import requests
 import json
 from io import StringIO
 import urllib
+import logging
 
 
 # get files from ckan
+
 
 def get_files(file_map_name, action, org_list_url, pkg_url):
     url = action + org_list_url
@@ -19,6 +21,7 @@ def get_files(file_map_name, action, org_list_url, pkg_url):
             title, value = get_src_by_pkg(pkg)
         except IndexError:
             print "Error getting info from " + str(pkg)
+            logging.error("ERROR getting info from: " + str(pkg))
             continue
         urls[title] = value
     print "END LIST get_src_by_pkg"
@@ -27,12 +30,21 @@ def get_files(file_map_name, action, org_list_url, pkg_url):
     for p_name, p_url in urls.iteritems():
         i += 1
         print 'START download ' + p_name + ' from ' + p_url
-        try:
-            download_file(i, p_url)
-        except (RuntimeError, IOError):
-            print 'ERROR trying to retrieve ' + p_url
+        attempts = 0
+        ok = 1
+        while attempts < no_attempts:
+            try:
+                download_file(i, p_url)
+                print 'downloaded: ' + p_url
+                logging.info('downloaded: ' + p_url)
+                break
+            except (RuntimeError, IOError):
+                print 'ERROR trying to retrieve ' + p_url
+                logging.error('ERROR trying to retrieve: ' + p_url)
+                attempts += 1
+                ok = 0
+        if ok == 0:
             i -= 1
-            continue
         map_file_content[i] = {
             'name': p_name, 'url': p_url, 'file': files_dir + str(i) + '.xml'}
         print 'Finish download '
@@ -59,13 +71,13 @@ def get_org_list(url):
 
 def get_packages_by_org_list(url, org_list):
     pkg_list = []
-    #i = 0
+    i = 0
     print 'get_packages_by_org_list'
     for org in org_list:
-        #i += 1
+        i += 1
         pkg_list = pkg_list + get_packages_by_org(url, org)
-#         if i > 1:
-#             break
+        if i > 3:
+            break
     print 'END get_packages_by_org_list'
     return pkg_list
 
@@ -106,13 +118,16 @@ org_list_url = 'organization_list'
 pkg_url = 'package_search'
 files_dir = '../../resources/files/'
 res_dir = '../../resources/'
+LOG_FILENAME = res_dir + 'download.log'
 conf_filename = 'file_map.json'
 conf_file = res_dir + conf_filename
 file_map_name = res_dir + conf_filename
+no_attempts = 5
 
 
 def run_download():
     print 'Start downloading files ....'
+    logging.basicConfig(filename=LOG_FILENAME, level=logging.INFO)
     map_file_content = get_files(file_map_name, action, org_list_url, pkg_url)
     print map_file_content
     print 'End downloading files'
