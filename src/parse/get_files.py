@@ -4,6 +4,7 @@ import json
 from io import StringIO
 import urllib
 import logging
+import time
 
 
 # get files from ckan
@@ -37,11 +38,13 @@ def get_files(file_map_name, action, org_list_url, pkg_url):
                 download_file(i, p_url)
                 print 'downloaded: ' + p_url
                 logging.info('downloaded: ' + p_url)
+                ok = 1
                 break
             except (RuntimeError, IOError):
                 print 'ERROR attempt' + str(attempts + 1) + ' for url:' + p_url
                 attempts += 1
                 ok = 0
+                time.sleep(6)
         if ok == 0:
             i -= 1
             logging.error('ERROR url: ' + p_url)
