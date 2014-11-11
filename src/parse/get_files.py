@@ -39,12 +39,13 @@ def get_files(file_map_name, action, org_list_url, pkg_url):
                 logging.info('downloaded: ' + p_url)
                 break
             except (RuntimeError, IOError):
-                print 'ERROR trying to retrieve ' + p_url
-                logging.error('ERROR trying to retrieve: ' + p_url)
+                print 'ERROR attempt' + str(attempts + 1) + ' for url:' + p_url
                 attempts += 1
                 ok = 0
         if ok == 0:
             i -= 1
+            logging.error('ERROR url: ' + p_url)
+            continue
         map_file_content[i] = {
             'name': p_name, 'url': p_url, 'file': files_dir + str(i) + '.xml'}
         print 'Finish download '
@@ -76,7 +77,7 @@ def get_packages_by_org_list(url, org_list):
     for org in org_list:
         i += 1
         pkg_list = pkg_list + get_packages_by_org(url, org)
-        if i > 3:
+        if max_orgs != -1 and i > max_orgs:
             break
     print 'END get_packages_by_org_list'
     return pkg_list
@@ -116,13 +117,14 @@ base = 'http://iatiregistry.org/api/3/'
 action = base + 'action/'
 org_list_url = 'organization_list'
 pkg_url = 'package_search'
-files_dir = '../../resources/files/'
 res_dir = '../../resources/'
+files_dir = res_dir + 'files/'
 LOG_FILENAME = res_dir + 'download.log'
 conf_filename = 'file_map.json'
 conf_file = res_dir + conf_filename
 file_map_name = res_dir + conf_filename
 no_attempts = 5
+max_orgs = -1
 
 
 def run_download():
