@@ -8,10 +8,9 @@ Created on Nov 12, 2014
 class OrgTransformer:
 
     def transform(self, org_dict):
-        key_list = []
         transformed_dict = {}
-        for key, item in org_dict.iteritems():
-            transformed_item = {'id': item['orgID'],
+        for item in org_dict.values():
+            transformed_item = {'id': unicode(item['orgID']).encode('utf-8'),
                                 'code': item['orgCode'],
                                 'name': item['orgName'],
                                 'locations': item['location'],
@@ -21,6 +20,5 @@ class OrgTransformer:
                                 'count': item['counter']
                                 }
             transformed_dict[transformed_item['id']] = transformed_item
-            key_list.append(key)
 
         return transformed_dict
