@@ -10,7 +10,7 @@ import logging
 
 log = logging.getLogger(__name__)
 
-solr_retrieve_url = 'http://localhost:8983/solr/org_collection/browse?wt=json'
+solr_retrieve_url = 'http://localhost:8983/solr/org_collection/select'
 solr_update_url = 'http://localhost:8983/solr/org_collection/update/json?commit=true'
 
 
@@ -20,13 +20,20 @@ class SolrDataPusher:
         if key_list:
             temp_key_list = ('"{}"'.format(key) for key in key_list)
             keys_str = ' '.join(temp_key_list)
-            params = urllib.urlencode(
-                {'fq': 'id:(' + keys_str + ')', 'rows': len(key_list)})
-            url = solr_retrieve_url + '&' + params
-            print 'Retrieve url is: ' + url
-            log.info('Retrieve url is: ' + url)
-            response = requests.get(
-                url, headers={'content-type': 'application/json'})
+#             params = urllib.urlencode(
+#                 {'fq': 'id:(' + keys_str + ')', 'rows': len(key_list)})
+#             url = solr_retrieve_url + '&' + params
+#             print 'Retrieve url is: ' + url
+#             log.info('Retrieve url is: ' + url)
+
+            post_params = {
+                'wt': 'json',
+                'q': '*:*',
+                'fq': 'id:(' + keys_str + ')',
+                'rows': len(key_list)
+            }
+
+            response = requests.post(solr_retrieve_url, post_params)
             jsonObj = response.json()
             if 'response' in jsonObj:
                 documents = jsonObj['response']['docs']
