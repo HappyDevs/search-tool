@@ -9,10 +9,14 @@
 #if($store)<div class="map"><img src="http://maps.google.com/maps/api/staticmap?&zoom=12&size=150x80&maptype=roadmap&markers=$doc.getFieldValue('store')&sensor=false" /><div><small><a target="_map" href="http://maps.google.com/?q=$store&amp;source=embed">Larger Map</a></small></div></div>#end
 <div>Id: #field('id')</div>
 <div>Code: #field('code')</div>
+<div>Count: #field('count')</div>
 
 <div>Roles: #field('roles')</div>
 
+<div>Locations: #field('locations')</div>
 <div>Sources: #field('sources')</div>
+<div>Source links: #field('source_links')</div>
+
 <div class="mlt">
   #set($mlt = $mltResults.get($docId))
   #set($mltOn = $params.getBool('mlt'))
@@ -22,7 +26,13 @@
     #foreach($mltHit in $mlt)
       #set($mltId = $mltHit.getFieldValue('id'))
       <li><div><a href="#url_for_home?q=id:$mltId">$mltId</a></div><div><span class="field-name">Name:</span> $mltHit.getFieldValue('name')</div>
-        <div><span class="field-name">Locations:</span> $mltHit.getFieldValue('locations') <span class="field-name">Roles:</span> $mltHit.getFieldValue('roles')  <span class="field-name">Sources:</span> $mltHit.getFieldValue('sources')</div>
+        <div>
+        	<span class="field-name">Locations:</span> $mltHit.getFieldValue('locations') 
+        	<span class="field-name">Roles:</span> $mltHit.getFieldValue('roles')  
+        	<span class="field-name">Sources:</span> $mltHit.getFieldValue('sources')
+        	<span class="field-name">Count:</span> $mltHit.getFieldValue('count')
+        
+        </div>
 
       </li>
     #end

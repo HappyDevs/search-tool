@@ -127,7 +127,7 @@ conf_filename = 'file_map.json'
 conf_file = res_dir + conf_filename
 file_map_name = res_dir + conf_filename
 no_attempts = 5
-max_orgs = -1
+max_orgs = 3
 
 
 def run_download():

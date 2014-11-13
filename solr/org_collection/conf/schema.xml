@@ -126,7 +126,8 @@
    <!-- Fileds introduced for org schema -->
    <field name="name" type="text_general" indexed="true" stored="true" required="true"/>
    <field name="code" type="string" indexed="true" stored="true" required="true"/>
-   <field name="sources" type="text_general" indexed="true" stored="true" multiValued="true"/>
+   <field name="sources" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="source_links" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="roles" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="locations" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="count" type="int" indexed="true" stored="true" />

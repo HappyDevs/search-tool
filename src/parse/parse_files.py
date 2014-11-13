@@ -5,7 +5,7 @@ import json
 #configurations or params
 file = 'in.xml'
 orgs = ['participating-org', 'reporting_org', 'provider-org', 'receiver-org']
-result = {}
+# result = {}
 res_dir = '../../resources/'
 conf_filename = 'file_map.json'
 conf_file = res_dir + conf_filename
@@ -85,7 +85,7 @@ def parse(file, orgs, result, name, url):
 
 
 def parse_file(file, name, url):
-    return parse(file, orgs, result, name, url)
+    return parse(file, orgs, {}, name, url)
 
 # map_file_content = run_download(file_map_name, action, org_list_url, pkg_url)
 
@@ -101,7 +101,7 @@ def parse_file(file, name, url):
 # print 'END to process files'
 
 
-def run_parse(pusher):
+def run_parse(transformer, pusher):
     with open(conf_file, 'r+') as f:
         data = json.load(f)
         no_files = data['0']['no_files']
@@ -112,6 +112,6 @@ def run_parse(pusher):
             f_name = data[str(i)]['name']
             print 'START parsing ... ' + f_file + ' from URL: ' + f_url
             res = parse_file(f_file, f_name, f_url)
-            pusher.push(res)
-            print res
+            org_dict = transformer.transform(res)
+            pusher.push(org_dict)
             print 'END parsing ... ' + f_file
