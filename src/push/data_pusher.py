@@ -58,7 +58,8 @@ class SolrDataPusher:
 
     def _update_dictionary(self, org_list, org_dict):
         for old_org in org_list:
-            org_id = old_org['id']
+            org_id = unicode(old_org['id']).encode('utf-8')
+
             org = org_dict[org_id]
 
             # update org
