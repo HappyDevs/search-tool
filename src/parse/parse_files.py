@@ -62,11 +62,8 @@ def parse(file, orgs, result, name, url):
                 item['orgName'] = orgName  # orgName.encode('utf-8')
 #                 if 'ref' in elem.attrib:
                 item['orgCode'] = unicode(elem.attrib.get('ref', None))
-                try:
-                    item['orgID'] = unicode(item['orgName'].strip().lower().replace(
-                        ' ', '__') + '#' + str(item['orgCode']))
-                except:
-                    pass
+                item['orgID'] = unicode(item['orgName'].strip().lower().replace(
+                    ' ', '__') + '#' + item['orgCode'])
                 orgID = item['orgID']
                 item['sourceName'] = unicode(name)
                 item['sourceURL'] = unicode(url)
