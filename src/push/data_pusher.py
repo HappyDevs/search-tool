@@ -7,6 +7,7 @@ import requests
 import urllib
 import json
 import logging
+import sys
 
 log = logging.getLogger(__name__)
 
@@ -60,20 +61,24 @@ class SolrDataPusher:
         for old_org in org_list:
             org_id = unicode(old_org['id']).encode('utf-8')
 
-            org = org_dict[org_id]
+            try:
+                org = org_dict[org_id]
 
-            # update org
-            if 'locations' in old_org:
-                org['locations'] = list(
-                    set(org['locations'] + old_org['locations']))
-            if 'sources' in old_org:
-                org['sources'] = list(
-                    set(org['sources'] + old_org['sources']))
-            if 'source_links' in old_org:
-                org['source_links'] = list(
-                    set(org['source_links'] + old_org['source_links']))
-            if 'roles' in old_org:
-                org['roles'] = list(
-                    set(org['roles'] + old_org['roles']))
-            if 'count' in old_org:
-                org['count'] += old_org['count']
+                # update org
+                if 'locations' in old_org:
+                    org['locations'] = list(
+                        set(org['locations'] + old_org['locations']))
+                if 'sources' in old_org:
+                    org['sources'] = list(
+                        set(org['sources'] + old_org['sources']))
+                if 'source_links' in old_org:
+                    org['source_links'] = list(
+                        set(org['source_links'] + old_org['source_links']))
+                if 'roles' in old_org:
+                    org['roles'] = list(
+                        set(org['roles'] + old_org['roles']))
+                if 'count' in old_org:
+                    org['count'] += old_org['count']
+            except KeyError:
+                print 'org from solr is: ' + str(old_org)
+                sys.exit("Error message")

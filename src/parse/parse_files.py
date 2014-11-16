@@ -62,18 +62,21 @@ def parse(file, orgs, result, name, url):
                 item['orgName'] = orgName  # orgName.encode('utf-8')
 #                 if 'ref' in elem.attrib:
                 item['orgCode'] = unicode(elem.attrib.get('ref', None))
-                item['orgID'] = unicode(item['orgName'].strip().lower().replace(
-                    ' ', '__') + '#' + item['orgCode'])
-                orgID = item['orgID']
-                item['sourceName'] = unicode(name)
-                item['sourceURL'] = unicode(url)
-                if 'role' in elem.attrib:
-                    item['orgRole'] = unicode(elem.attrib['role'])
-                item['location'] = []
-                if orgID not in items:
-                    items[orgID] = [item]
-                else:
-                    items[orgID].append(item)
+                if item['orgCode'] or \
+                        (item['orgName'] and item['orgName'].strip()):
+                    item['orgID'] = unicode(
+                        item['orgName'].strip().lower().replace(
+                            ' ', '__') + '#' + item['orgCode'])
+                    orgID = item['orgID']
+                    item['sourceName'] = unicode(name)
+                    item['sourceURL'] = unicode(url)
+                    if 'role' in elem.attrib:
+                        item['orgRole'] = unicode(elem.attrib['role'])
+                    item['location'] = []
+                    if orgID not in items:
+                        items[orgID] = [item]
+                    else:
+                        items[orgID].append(item)
         if event == 'end':
             if elem.tag == 'iati-activity':
                 for it in items:
