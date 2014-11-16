@@ -62,7 +62,7 @@ def parse(file, orgs, result, name, url):
                 item['orgName'] = orgName  # orgName.encode('utf-8')
 #                 if 'ref' in elem.attrib:
                 item['orgCode'] = unicode(elem.attrib.get('ref', None))
-                if item['orgCode'] or \
+                if (item['orgCode'] and item['orgCode'] != u'None' ) or  \
                         (item['orgName'] and item['orgName'].strip()):
                     item['orgID'] = unicode(
                         item['orgName'].strip().lower().replace(
