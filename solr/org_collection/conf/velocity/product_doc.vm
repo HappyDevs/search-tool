@@ -2,43 +2,60 @@
  *  Render a hit representing a Product
  *  assumed to have a field called "name"
  *#
-
-<div class="result-title"><b>#field('name')</b><span class="mlt">   #if($params.getBool('mlt', false) == false)<a href="#lensNoQ&q=id:$docId&mlt=true">More Like This</a>#end</span></div>
-##do we have a physical store for this product
-#set($store = $doc.getFieldValue('store'))
-#if($store)<div class="map"><img src="http://maps.google.com/maps/api/staticmap?&zoom=12&size=150x80&maptype=roadmap&markers=$doc.getFieldValue('store')&sensor=false" /><div><small><a target="_map" href="http://maps.google.com/?q=$store&amp;source=embed">Larger Map</a></small></div></div>#end
-<div>Id: #field('id')</div>
-<div>Code: #field('code')</div>
-<div>Count: #field('count')</div>
-
-<div>Roles: #field('roles')</div>
-
-<div>Locations: #field('locations')</div>
-<div>Sources: #field('sources')</div>
-<div>Source links: #field('source_links')</div>
-
-<div class="mlt">
-  #set($mlt = $mltResults.get($docId))
-  #set($mltOn = $params.getBool('mlt'))
-  #if($mltOn == true)<div class="field-name">Similar Items</div>#end
-  #if ($mltOn && $mlt && $mlt.size() > 0)
-  <ul>
-    #foreach($mltHit in $mlt)
-      #set($mltId = $mltHit.getFieldValue('id'))
-      <li><div><a href="#url_for_home?q=id:$mltId">$mltId</a></div><div><span class="field-name">Name:</span> $mltHit.getFieldValue('name')</div>
-        <div>
-        	<span class="field-name">Locations:</span> $mltHit.getFieldValue('locations') 
-        	<span class="field-name">Roles:</span> $mltHit.getFieldValue('roles')  
-        	<span class="field-name">Sources:</span> $mltHit.getFieldValue('sources')
-        	<span class="field-name">Count:</span> $mltHit.getFieldValue('count')
-        
-        </div>
-
-      </li>
-    #end
-  </ul>
-  #elseif($mltOn && $mlt.size() == 0)
-    <div>No Similar Items Found</div>
-  #end
+<div class="row">
+<div class="col-md-12">
+<div class="panel panel-default">
+	<div class="panel-heading"><b>#field('name')</b>
+		##<span class="mlt">   #if($params.getBool('mlt', false) == false)<a href="#lensNoQ&q=id:$docId&mlt=true">More Like This</a>#end</span>
+		#set($my_field_value = "$doc.getFieldValue('name')")
+		<span class="mlt"><a href='#url_for_home?q=&fq=name:"$my_field_value"'>More With Same Name</a></span>
+	</div>
+	<div class="panel-body">
+		##do we have a physical store for this product
+		#set($store = $doc.getFieldValue('store'))
+		#if($store)<div class="map"><img src="http://maps.google.com/maps/api/staticmap?&zoom=12&size=150x80&maptype=roadmap&markers=$doc.getFieldValue('store')&sensor=false" /><div><small><a target="_map" href="http://maps.google.com/?q=$store&amp;source=embed">Larger Map</a></small></div></div>#end
+		<div>
+			Id: #field('id')
+		</div>
+		<div>
+			Code: #field('code')
+			#set($my_field_value = "$doc.getFieldValue('code')")
+			<span class="mlt"><a href='#url_for_home?q=&fq=code:"$my_field_value"'>More With Same Code</a></span>
+		</div>
+		<div>Count: #field('count')</div>
+		
+		<div>Roles: #field('roles')</div>
+		
+		<div>Locations: #field('locations')</div>
+		<div>Sources: #field('sources')</div>
+		<div>Source links: #link_field('source_links')</div>
+		
+		<div class="mlt">
+		  #set($mlt = $mltResults.get($docId))
+		  #set($mltOn = $params.getBool('mlt'))
+		  #if($mltOn == true)<div class="field-name">Similar Items</div>#end
+		  #if ($mltOn && $mlt && $mlt.size() > 0)
+		  <ul>
+		    #foreach($mltHit in $mlt)
+		      #set($mltId = $mltHit.getFieldValue('id'))
+		      <li><div><a href="#url_for_home?q=id:$mltId">$mltId</a></div><div><span class="field-name">Name:</span> $mltHit.getFieldValue('name')</div>
+		        <div>
+		        	<span class="field-name">Locations:</span> $mltHit.getFieldValue('locations') 
+		        	<span class="field-name">Roles:</span> $mltHit.getFieldValue('roles')  
+		        	<span class="field-name">Sources:</span> $mltHit.getFieldValue('sources')
+		        	<span class="field-name">Count:</span> $mltHit.getFieldValue('count')
+		        
+		        </div>
+		
+		      </li>
+		    #end
+		  </ul>
+		  #elseif($mltOn && $mlt.size() == 0)
+		    <div>No Similar Items Found</div>
+		  #end
+		</div>
+		#parse('debug.vm')
+	</div>
 </div>
-#parse('debug.vm')
+</div>
+</div>

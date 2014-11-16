@@ -997,11 +997,11 @@
        <str name="facet.mincount">1</str>
        <str name="facet.pivot">sources,roles</str>
        <str name="facet.range.other">after</str>
-<!--       <str name="facet.range">price</str>
-       <int name="f.price.facet.range.start">0</int>
-       <int name="f.price.facet.range.end">600</int>
-       <int name="f.price.facet.range.gap">50</int>
-       <str name="facet.range">popularity</str>
+       <str name="facet.range">count</str>
+       <int name="f.count.facet.range.start">0</int>
+       <int name="f.count.facet.range.end">1000</int>
+       <int name="f.count.facet.range.gap">50</int>
+<!--   <str name="facet.range">popularity</str>
        <int name="f.popularity.facet.range.start">0</int>
        <int name="f.popularity.facet.range.end">10</int>
        <int name="f.popularity.facet.range.gap">3</int>

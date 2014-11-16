@@ -23,7 +23,7 @@
     ${response.responseHeader.QTime} ms
   </span>
 
-  Page <span class="page-num">$page.current_page_number</span>
+  / This is page <span class="page-num">$page.current_page_number</span>
     of <span class="page-count">$page.page_count</span>
 
 #end   ## end else non-grouped results, normal pagination

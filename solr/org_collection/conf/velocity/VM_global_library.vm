@@ -119,6 +119,30 @@
     </ul>
 #end
 
+#macro(display_facet_range_with_bs $field, $display, $fieldName, $start, $end, $gap, $before, $after)
+  <h4><span class="label label-default">$display</span></h4>
+    <div class="list-group">
+    #if($before && $before != "")
+      #set($value = "[* TO " + "#format_value($start)" + "}")
+      #set($facetURL = "#url_for_facet_range_filter($fieldName, $value)")
+      <a class="list-group-item" href="$facetURL">Less than #format_value($start) <span class="badge">$before</span></a>
+    #end
+    #foreach ($facet in $field)
+      #set($rangeEnd = "#range_get_to_value($facet.key, $gap)")
+      #set($value = "[" + $facet.key + " TO " + $rangeEnd + "}")
+      #set($facetURL = "#url_for_facet_range_filter($fieldName, $value)")
+      #if ($facetURL != '')
+        <a class="list-group-item" href="$facetURL">$facet.key - #format_value($rangeEnd)<span class="badge">$facet.value</span></a>
+      #end
+    #end
+    #if($end && $end != "" && $after > 0)
+      #set($value = "[" + "#format_value($end)" + " TO *}")
+      #set($facetURL = "#url_for_facet_range_filter($fieldName, $value)")
+      <a class="list-group-item" href="$facetURL">More than #format_value($end) <span class="badge">$after</span></a>
+    #end
+    </div>
+#end
+
 ## $pivots is a list of facet_pivot
 #macro(display_facet_pivot $pivots, $display)
   #if($pivots.size() > 0)
@@ -143,6 +167,36 @@
       #end
     </ul>
   #end
+#end
+
+#macro(display_facet_pivot_with_bs $pivots, $display)
+  #if($pivots.size() > 0)
+  <span class="facet-field">$display</span>
+    <div class="list-group">
+      #foreach ($pivot in $pivots)
+        #foreach ($entry in $pivot.value)
+          <a class="list-group-item" href="#url_for_facet_filter($entry.field, $entry.value)">$entry.field -> #if($entry.value!=$null)$entry.value#else<em>missing</em>#end <span class="badge">$entry.count</span></a>
+          <ul>
+            #foreach($nest in $entry.pivot)
+              <div class="list-group-item">
+                #if($nest.value != $null)
+                  <a href="#url_for_facet_filter($entry.field, $entry.value)&fq=$esc.url($nest.field):%22$esc.url($nest.value)%22">$nest.field -> $nest.value<span class="badge">$nest.count</span></a>
+                #else
+                  <a href="#url_for_facet_filter($entry.field, $entry.value)&fq=-$esc.url($nest.field):[*+TO+*]">$nest.field -> <em>missing</em><span class="badge">$nest.count</span></a>
+                #end
+              </div>
+            #end
+          </ul>
+        #end
+      #end
+    </div>
+  #end
+#end
+
+#macro(link_field $f)
+	#foreach($v in $doc.getFieldValues($f))
+		<a href="$v">$v</a>
+	#end
 #end
 
 #macro(field $f)

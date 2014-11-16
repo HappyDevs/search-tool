@@ -18,6 +18,6 @@
 	#set($gap = $field.value.gap)
 	#set($before = $field.value.before)
 	#set($after = $field.value.after)
-	#display_facet_range($f, $display, $name, $start, $end, $gap, $before, $after)
+	#display_facet_range_with_bs($f, $display, $name, $start, $end, $gap, $before, $after)
   #end  ## end if has any values
 #end    ## end for each facet range

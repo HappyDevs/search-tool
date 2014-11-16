@@ -10,12 +10,12 @@
   #foreach($field in $response.facetFields)
     ## Hide facets without value
     #if($field.values.size() > 0)
-      <span class="facet-field">$field.name</span>
-      <ul>
+      <h4><span class="label label-default">$field.name</span></h4>
+      <div class="list-group">
         #foreach($facet in $field.values)
-          <li><a href="#url_for_facet_filter($field.name, $facet.name)">#if($facet.name!=$null)$facet.name#else<em>missing</em>#end</a> ($facet.count)</li>
+          <a class="list-group-item" href="#url_for_facet_filter($field.name, $facet.name)">#if($facet.name!=$null)$facet.name#else<em>missing</em>#end <span class="badge">$facet.count</span></a> 
         #end
-      </ul>
+      </div>
     #end  ## end if > 0
   #end    ## end for each facet field
 #end      ## end if response has facet fields

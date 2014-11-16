@@ -10,24 +10,38 @@
 #parse('query_form.vm')
 #parse('did_you_mean.vm')
 
-<div class="navigators">
-  #parse("facets.vm")
-</div>
+<div class="row">
+	<div class="col-md-3">
+		##<div class="navigators">
+	  	#parse("facets.vm")
+	  	##</div>
+	</div>
 
-<div class="pagination">
-  #parse("pagination_top.vm")
-</div>
-
-## Show Error Message, if any
-<div class="error">
-  #parse("error.vm")
-</div>
-
-## Render Results, actual matching docs
-<div class="results">
-  #parse("results_list.vm")
-</div>
-
-<div class="pagination">
-  #parse("pagination_bottom.vm")
+	<div class="col-md-8">
+		<div class="row">
+			<div class="col-md-12">
+				##<div class="pagination">
+				  <div class="alert alert-info">
+				  #parse("pagination_top.vm")
+				  </div>
+				##</div>
+				## Show Error Message, if any
+				##<div class="error">
+				  #parse("error.vm")
+				##</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			## Render Results, actual matching docs
+			##<div class="results col-md-12">
+			  #parse("results_list.vm")
+			##</div>
+		</div>
+		<div class="row">
+			##<div class="pagination col-md-12">
+			  #parse("pagination_bottom.vm")
+			##</div>
+		</div>
+	</div>
 </div>
