@@ -39,7 +39,7 @@
 			<label>Sources</label>: <span>#field('sources')</span>
 		</div>
 		<div>
-			<label>Source links</label>: <span "source-link">#link_field('source_links')</span>
+			<label>Source links</label>: <span class="source_link">#link_field('source_links')</span>
 		</div>
 		
 		<div class="mlt">
