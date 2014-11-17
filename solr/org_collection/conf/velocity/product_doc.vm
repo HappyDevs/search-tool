@@ -8,7 +8,7 @@
 	<div class="panel-heading"><b>#field('name')</b>
 		##<span class="mlt">   #if($params.getBool('mlt', false) == false)<a href="#lensNoQ&q=id:$docId&mlt=true">More Like This</a>#end</span>
 		#set($my_field_value = "$doc.getFieldValue('name')")
-		<span class="mlt"><a href='#url_for_home?q=&fq=name:"$my_field_value"'>More With Same Name</a></span>
+		<span class="mlt"><a class="label label-primary" href='#url_for_home?q=&fq=name:"$my_field_value"'>More With Same Name</a></span>
 	</div>
 	<div class="panel-body">
 		##do we have a physical store for this product
@@ -21,7 +21,7 @@
 			<label>Code</label>: #field('code')
 			<span>
 				#set($my_field_value = "$doc.getFieldValue('code')")
-				<span class="mlt"><a href='#url_for_home?q=&fq=code:"$my_field_value"'>More With Same Code</a></span>
+				<span class="mlt"><a class="label label-primary" href='#url_for_home?q=&fq=code:"$my_field_value"'>More With Same Code</a></span>
 			</span>
 		</div>
 		<div>
@@ -39,7 +39,7 @@
 			<label>Sources</label>: <span>#field('sources')</span>
 		</div>
 		<div>
-			<label>Source links</label>: <span "source-link">#link_field('source_links')</span>
+			<label>Source links</label>: <span class="source_link">#link_field('source_links')</span>
 		</div>
 		
 		<div class="mlt">
