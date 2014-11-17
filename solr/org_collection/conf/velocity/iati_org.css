@@ -6,3 +6,7 @@ span.source_link a:hover, span.source_link a:focus,span.source_link a{
     opacity: 1;
     text-decoration: none;
 }
+
+span.mlt a.label.label-primary{
+	font-size: 100%;
+}
