@@ -16,11 +16,11 @@
 		#if($store)<div class="map"><img src="http://maps.google.com/maps/api/staticmap?&zoom=12&size=150x80&maptype=roadmap&markers=$doc.getFieldValue('store')&sensor=false" /><div><small><a target="_map" href="http://maps.google.com/?q=$store&amp;source=embed">Larger Map</a></small></div></div>#end
 		<table class="table table-condensed">
 			<tr>
-				<th><label>Id</label></th>
+				<td><label>Id</label></td>
 				<td>#field('id')</td>
 			</tr>
 			<tr>
-				<th><label>Code</label></th>
+				<td><label>Code</label></td>
 				<td>
 					#field('code')
 					<span>
@@ -30,28 +30,30 @@
 				</td>
 			</tr>
 			<tr>
-				<th><label>Count</label></th>
+				<td><label>Count</label></td>
 				<td><span class="badge">#field('count')</span></td>
 			</tr>
 			
 			<tr>
-				<th><label>Roles</label></th>
+				<td><label>Roles</label></td>
 				<td><span>#field('roles')</span></td>
 			</tr>
 			
 			<tr>
-				<th><label>Locations</label></th>
+				<td><label>Locations</label></td>
 				<td><span>#field('locations')</span></td>
 			</tr>
 			<tr>
-				<th><label>Sources</label></th>
+				<td><label>Sources</label></td>
 				<td><span>#field('sources')</span></td>
 			</tr>
 			<tr>
-				<th><label>Source links</label></th>
+				<td><label>Source links</label></td>
 				<td><span class="source_link">#link_field('source_links')</span></td>
 			</tr>
 		</table>
+		
+		#*
 		<div class="mlt">
 		  #set($mlt = $mltResults.get($docId))
 		  #set($mltOn = $params.getBool('mlt'))
@@ -76,6 +78,7 @@
 		    <div>No Similar Items Found</div>
 		  #end
 		</div>
+		*#
 		#parse('debug.vm')
 	</div>
 </div>
