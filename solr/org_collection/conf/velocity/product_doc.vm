@@ -22,7 +22,7 @@
 			#set($my_field_value = "$doc.getFieldValue('code')")
 			<span class="mlt"><a href='#url_for_home?q=&fq=code:"$my_field_value"'>More With Same Code</a></span>
 		</div>
-		<div>Count: #field('count')</div>
+		<div>Count: <span class="count">#field('count')</span></div>
 		
 		<div>Roles: #field('roles')</div>
 		
