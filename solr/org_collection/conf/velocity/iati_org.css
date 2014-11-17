@@ -7,6 +7,15 @@ span.source_link a:hover, span.source_link a:focus,span.source_link a{
     text-decoration: none;
 }
 
+span.more_link a:hover, span.more_link a:focus,span.more_link a{
+	color: #007ce0;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    opacity: 1;
+    text-decoration: none;
+}
+
 span.mlt a{
 	font-size: 100%;
 }
