@@ -17,18 +17,30 @@
 		<div>
 			Id: #field('id')
 		</div>
-		<label>Code</label>: #field('code')
-		<span>
-			#set($my_field_value = "$doc.getFieldValue('code')")
-			<span class="mlt"><a href='#url_for_home?q=&fq=code:"$my_field_value"'>More With Same Code</a></span>
-		</span>
-		<label>Count</label> <span class="badge">#field('count')</span>
+		<div>
+			<label>Code</label>: #field('code')
+			<span>
+				#set($my_field_value = "$doc.getFieldValue('code')")
+				<span class="mlt"><a href='#url_for_home?q=&fq=code:"$my_field_value"'>More With Same Code</a></span>
+			</span>
+		</div>
+		<div>
+			<label>Count</label> <span class="badge">#field('count')</span>
+		</div>
 		
-		<label>Roles</label>: <span>#field('roles')</span>
+		<div>
+			<label>Roles</label>: <span>#field('roles')</span>
+		</div>
 		
-		<label>Locations</label>: <span>#field('locations')</span>
-		<label>Sources</label>: <span>#field('sources')</span>
-		<label>Source links</label>: <span>#link_field('source_links')</span>
+		<div>
+			<label>Locations</label>: <span>#field('locations')</span>
+		</div>
+		<div>
+			<label>Sources</label>: <span>#field('sources')</span>
+		</div>
+		<div>
+			<label>Source links</label>: <span>#link_field('source_links')</span>
+		</div>
 		
 		<div class="mlt">
 		  #set($mlt = $mltResults.get($docId))
