@@ -2,7 +2,6 @@
  *  Render a hit representing a Product
  *  assumed to have a field called "name"
  *#
-
 <div class="row">
 <div class="col-md-12">
 <div class="panel panel-default">
@@ -57,7 +56,6 @@
 		</div>
 		#parse('debug.vm')
 	</div>
-
 </div>
 </div>
 </div>
