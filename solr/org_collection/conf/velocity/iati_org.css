@@ -7,4 +7,22 @@
     letter-spacing: 0.03em;
     opacity: 1;
     color: #fff;
+    text-align:	center;
+	vertical-align:	middle;
+	line-height: 20px;
+    margin-bottom: 4px;
+    margin-right: 6px;
+    min-width: 10px;
+    padding: 0 10px;
+    text-transform: uppercase;
+    vertical-align: middle;
+}
+
+.org-label{
+	font-size:	14px;
+	font-weight:	700;
+	color:	rgb(136,​ 136,​ 136);
+	line-height:	20px;
+	text-align:	left;
+	vertical-align:	top;
 }

@@ -17,18 +17,18 @@
 		<div>
 			Id: #field('id')
 		</div>
-		<div>
-			Code: #field('code')
+		<label>Code</label>: #field('code')
+		<span>
 			#set($my_field_value = "$doc.getFieldValue('code')")
 			<span class="mlt"><a href='#url_for_home?q=&fq=code:"$my_field_value"'>More With Same Code</a></span>
-		</div>
-		<div>Count: <span class="count">#field('count')</span></div>
+		</span>
+		<label>Count</label> <span class="badge">#field('count')</span>
 		
-		<div>Roles: #field('roles')</div>
+		<label>Roles</label>: <span>#field('roles')</span>
 		
-		<div>Locations: #field('locations')</div>
-		<div>Sources: #field('sources')</div>
-		<div>Source links: #link_field('source_links')</div>
+		<label>Locations</label>: <span>#field('locations')</span>
+		<label>Sources</label>: <span>#field('sources')</span>
+		<label>Source links</label>: <span>#link_field('source_links')</span>
 		
 		<div class="mlt">
 		  #set($mlt = $mltResults.get($docId))
