@@ -16,10 +16,6 @@ a.more_link:hover, a.more_link:focus, a {
     text-decoration: none;
 }
 
-span.mlt a{
-	font-size: 100%;
-}
-
 table.details{
 	font-size: 14px;
 }
