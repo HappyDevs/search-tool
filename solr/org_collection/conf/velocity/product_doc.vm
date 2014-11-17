@@ -5,10 +5,10 @@
 <div class="row">
 <div class="col-md-12">
 <div class="panel panel-default">
-	<div class="panel-heading"><b>#field('name')</b>
+	<div class="panel-heading"><label>#field('name')</label>
 		##<span class="mlt">   #if($params.getBool('mlt', false) == false)<a href="#lensNoQ&q=id:$docId&mlt=true">More Like This</a>#end</span>
 		#set($my_field_value = "$doc.getFieldValue('name')")
-		<span class="mlt"><a class="label label-primary" href='#url_for_home?q=&fq=name:"$my_field_value"'>More With Same Name</a></span>
+		<span class="mlt"><a class="more_link" href='#url_for_home?q=&fq=name:"$my_field_value"'>More With Same Name</a></span>
 	</div>
 	<div class="panel-body">
 		##do we have a physical store for this product
@@ -25,7 +25,7 @@
 					#field('code')
 					<span>
 						#set($my_field_value = "$doc.getFieldValue('code')")
-						<span class="mlt"><a class="label label-primary" href='#url_for_home?q=&fq=code:"$my_field_value"'>More With Same Code</a></span>
+						<span class="mlt"><a class="more_link" href='#url_for_home?q=&fq=code:"$my_field_value"'>More With Same Code</a></span>
 					</span>
 				</td>
 			</tr>
