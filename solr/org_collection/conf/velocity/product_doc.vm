@@ -14,33 +14,43 @@
 		##do we have a physical store for this product
 		#set($store = $doc.getFieldValue('store'))
 		#if($store)<div class="map"><img src="http://maps.google.com/maps/api/staticmap?&zoom=12&size=150x80&maptype=roadmap&markers=$doc.getFieldValue('store')&sensor=false" /><div><small><a target="_map" href="http://maps.google.com/?q=$store&amp;source=embed">Larger Map</a></small></div></div>#end
-		<div>
-			<label>Id</label>: #field('id')
-		</div>
-		<div>
-			<label>Code</label>: #field('code')
-			<span>
-				#set($my_field_value = "$doc.getFieldValue('code')")
-				<span class="mlt"><a class="label label-primary" href='#url_for_home?q=&fq=code:"$my_field_value"'>More With Same Code</a></span>
-			</span>
-		</div>
-		<div>
-			<label>Count</label>: <span class="badge">#field('count')</span>
-		</div>
+		<table class="table table-bordered table-condensed">
+		<tr>
+			<th><label>Id</label></th>
+			<td>#field('id')</td>
+		</tr>
+		<tr>
+			<th><label>Code</label></th>
+			<td>
+				#field('code')
+				<span>
+					#set($my_field_value = "$doc.getFieldValue('code')")
+					<span class="mlt"><a class="label label-primary" href='#url_for_home?q=&fq=code:"$my_field_value"'>More With Same Code</a></span>
+				</span>
+			</td>
+		</tr>
+		<tr>
+			<th><label>Count</label></th>
+			<td><span class="badge">#field('count')</span></td>
+		</tr>
 		
-		<div>
-			<label>Roles</label>: <span>#field('roles')</span>
-		</div>
+		<tr>
+			<th><label>Roles</label></th>
+			<td><span>#field('roles')</span></td>
+		</tr>
 		
-		<div>
-			<label>Locations</label>: <span>#field('locations')</span>
-		</div>
-		<div>
-			<label>Sources</label>: <span>#field('sources')</span>
-		</div>
-		<div>
-			<label>Source links</label>: <span class="source_link">#link_field('source_links')</span>
-		</div>
+		<tr>
+			<th><label>Locations</label></th>
+			<td><span>#field('locations')</span></td>
+		</tr>
+		<tr>
+			<th><label>Sources</label></th>
+			<td><span>#field('sources')</span></td>
+		</tr>
+		<tr>
+			<th><label>Source links</label></th>
+			<td><span class="source_link">#link_field('source_links')</span></td>
+		</tr>
 		
 		<div class="mlt">
 		  #set($mlt = $mltResults.get($docId))
