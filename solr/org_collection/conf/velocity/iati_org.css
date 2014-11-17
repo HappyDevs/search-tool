@@ -7,6 +7,6 @@ span.source_link a:hover, span.source_link a:focus,span.source_link a{
     text-decoration: none;
 }
 
-span.mlt a.label.label-primary{
+span.mlt a{
 	font-size: 100%;
 }
