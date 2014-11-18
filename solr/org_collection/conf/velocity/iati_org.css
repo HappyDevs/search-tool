@@ -7,7 +7,7 @@ span.source_link a:hover, span.source_link a:focus,span.source_link a{
     text-decoration: none;
 }
 
-a.more_link:hover, a.more_link:focus, a {
+a:hover, a:focus, a {
 	color: #007ce0;
     font-size: 14px;
     font-weight: 400;
@@ -16,6 +16,29 @@ a.more_link:hover, a.more_link:focus, a {
     text-decoration: none;
 }
 
+a.more_link:hover, a.more_link:focus, a.more_link{
+	font-size: 12px;
+}
+
+a.a_title:hover, a.a_title:focus, a.a_title{
+	font-size:18px;
+}
+
 table.details{
 	font-size: 14px;
+}
+
+.uppercase{
+	text-transform: uppercase;
+}
+
+.mL15{
+	margin-left: 15px;
+}
+
+.mL30{
+	margin-left: 30px;
+}
+.mT50{
+	margin-top: 50px;
 }
