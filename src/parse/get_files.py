@@ -5,6 +5,7 @@ from io import StringIO
 import urllib
 import logging
 import time
+import ConfigParser
 
 
 # get files from ckan
@@ -120,17 +121,27 @@ base = 'http://iatiregistry.org/api/3/'
 action = base + 'action/'
 org_list_url = 'organization_list'
 pkg_url = 'package_search'
-res_dir = '../../resources/'
-files_dir = res_dir + 'files/'
-LOG_FILENAME = res_dir + 'download.log'
 conf_filename = 'file_map.json'
-conf_file = res_dir + conf_filename
-file_map_name = res_dir + conf_filename
+
+res_dir = '../../resources/'
+config_file = res_dir + 'config.txt'
+config = ConfigParser.ConfigParser()
+config.readfp(open(config_file, 'r'))
+base_dir = config.get('resources', 'base_dir')
+files_dir = base_dir + config.get('resources', 'downloaded_files')
+logs_dir = base_dir + config.get('resources', 'logs_dir')
+
+#files_dir = res_dir + 'files/'
+LOG_FILENAME = logs_dir + 'download.log'
+
+#conf_file = files_dir + conf_filename
+file_map_name = base_dir + conf_filename
 no_attempts = 5
 max_orgs = 3
 
 
 def run_download():
+
     print 'Start downloading files ....'
     logging.basicConfig(filename=LOG_FILENAME, level=logging.INFO)
     map_file_content = get_files(file_map_name, action, org_list_url, pkg_url)
