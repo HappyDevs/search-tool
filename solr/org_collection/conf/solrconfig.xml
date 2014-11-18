@@ -965,7 +965,7 @@
        <str name="wt">velocity</str>
        <str name="v.template">browse</str>
        <str name="v.layout">layout</str>
-       <str name="title">Solritas</str>
+       <str name="title">Search Organization Tool</str>
 
        <!-- Query settings -->
        <str name="defType">edismax</str>
