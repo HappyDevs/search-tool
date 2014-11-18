@@ -36,6 +36,10 @@ table.details{
 	margin-left: 15px;
 }
 
+.pL15{
+	padding-left: 15px;
+}
+
 .mL30{
 	margin-left: 30px;
 }
@@ -44,4 +48,16 @@ table.details{
 }
 .mT15{
 	margin-top: 15px;
+}
+
+.query-box, .constraints {
+  padding: 5px;
+  margin: 5px;
+  font-weight: normal;
+  font-size: 24px;
+  letter-spacing: 0.08em;
+}
+
+.pagination {
+    background: none;
 }
