@@ -70,10 +70,10 @@ def get_files(file_map, action, org_list_url, pkg_url):
                 logging.info('downloaded: ' + p_url)
                 ok = 1
                 break
-            except (RuntimeError, IOError):
+            except (RuntimeError, IOError) as ex:
                 attempts += 1
                 ok = 0
-                print 'ERROR attempt' + str(attempts) + ' for url:' + p_url
+                print 'ERROR attempt' + str(attempts) + ' for url:' + p_url + ' exception:' + str(ex)
                 logging.error(
                     'ERROR attempt' + str(attempts) + ' for url:' + p_url)
                 time.sleep(6)
@@ -143,3 +143,4 @@ def download_file(i, p_url):
     r = requests.get(p_url, allow_redirects=True)
     new_url = r.url
     urllib.URLopener().retrieve(new_url, files_dir + str(i) + '.xml')
+    print "ala bala"
