@@ -8,10 +8,39 @@ import time
 import ConfigParser
 
 
+# some settings
+base = 'http://iatiregistry.org/api/3/'
+action = base + 'action/'
+org_list_url = 'organization_list'
+pkg_url = 'package_search'
+conf_filename = 'file_map.json'
+
+res_dir = '../../resources/'
+config_file = res_dir + 'config.txt'
+config = ConfigParser.ConfigParser()
+config.readfp(open(config_file, 'r'))
+base_dir = config.get('resources', 'base_dir')
+files_dir = base_dir + config.get('resources', 'downloaded_files')
+logs_dir = base_dir + config.get('resources', 'logs_dir')
+
+LOG_FILENAME = logs_dir + 'download.log'
+
+file_map = base_dir + conf_filename
+no_attempts = 5
+max_orgs = -1
+
+
+def run_download():
+    print 'Start downloading files ....'
+    logging.basicConfig(filename=LOG_FILENAME, level=logging.INFO)
+    map_file_content = get_files(file_map, action, org_list_url, pkg_url)
+    print map_file_content
+    print 'End downloading files'
+    return map_file_content
+
+
 # get files from ckan
-
-
-def get_files(file_map_name, action, org_list_url, pkg_url):
+def get_files(file_map, action, org_list_url, pkg_url):
     url = action + org_list_url
     orgs_list = get_org_list(url)
     url = action + pkg_url
@@ -31,7 +60,7 @@ def get_files(file_map_name, action, org_list_url, pkg_url):
     i = 0
     for p_name, p_url in urls.iteritems():
         i += 1
-        print 'START download ' + p_name + ' from ' + p_url
+        print 'START download ' + str(i) + ' ' + p_name + ' from ' + p_url
         attempts = 0
         ok = 1
         while attempts < no_attempts:
@@ -42,19 +71,23 @@ def get_files(file_map_name, action, org_list_url, pkg_url):
                 ok = 1
                 break
             except (RuntimeError, IOError):
-                print 'ERROR attempt' + str(attempts + 1) + ' for url:' + p_url
                 attempts += 1
                 ok = 0
+                print 'ERROR attempt' + str(attempts) + ' for url:' + p_url
+                logging.error(
+                    'ERROR attempt' + str(attempts) + ' for url:' + p_url)
                 time.sleep(6)
         if ok == 0:
             i -= 1
-            logging.error('ERROR url: ' + p_url)
+            logging.error('ERROR i=' + str(i) + ' for url: ' + p_url)
+            print 'ERROR i=' + str(i) + ' for url: ' + p_url
             continue
         map_file_content[i] = {
             'name': p_name, 'url': p_url, 'file': files_dir + str(i) + '.xml'}
         print 'Finish download '
+    print 'Number of files: ' + str(i)
     map_file_content[0] = {'no_files': i}
-    with open(file_map_name, 'w') as outfile:
+    with open(file_map, 'w') as outfile:
         json.dump(map_file_content, outfile)
     return map_file_content
 
@@ -101,50 +134,12 @@ def get_packages_by_org(url, org):
     return pkg_list
 
 
-def clean_url(url):
-    url = url.replace('http://', '')
-    url = url.replace('www.', '')
-    return url
-
-
 def get_src_by_pkg(pkg):
     pkg_url = pkg['resources'][0]['url']
     return pkg['title'], pkg_url
 
 
 def download_file(i, p_url):
-    urllib.URLopener().retrieve(p_url, files_dir + str(i) + '.xml')
-
-
-# some settings
-base = 'http://iatiregistry.org/api/3/'
-action = base + 'action/'
-org_list_url = 'organization_list'
-pkg_url = 'package_search'
-conf_filename = 'file_map.json'
-
-res_dir = '../../resources/'
-config_file = res_dir + 'config.txt'
-config = ConfigParser.ConfigParser()
-config.readfp(open(config_file, 'r'))
-base_dir = config.get('resources', 'base_dir')
-files_dir = base_dir + config.get('resources', 'downloaded_files')
-logs_dir = base_dir + config.get('resources', 'logs_dir')
-
-#files_dir = res_dir + 'files/'
-LOG_FILENAME = logs_dir + 'download.log'
-
-#conf_file = files_dir + conf_filename
-file_map_name = base_dir + conf_filename
-no_attempts = 5
-max_orgs = 3
-
-
-def run_download():
-
-    print 'Start downloading files ....'
-    logging.basicConfig(filename=LOG_FILENAME, level=logging.INFO)
-    map_file_content = get_files(file_map_name, action, org_list_url, pkg_url)
-    print map_file_content
-    print 'End downloading files'
-    return map_file_content
+    r = requests.get(p_url, allow_redirects=True)
+    new_url = r.url
+    urllib.URLopener().retrieve(new_url, files_dir + str(i) + '.xml')
