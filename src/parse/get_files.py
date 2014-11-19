@@ -143,4 +143,3 @@ def download_file(i, p_url):
     r = requests.get(p_url, allow_redirects=True)
     new_url = r.url
     urllib.URLopener().retrieve(new_url, files_dir + str(i) + '.xml')
-    print "ala bala"
