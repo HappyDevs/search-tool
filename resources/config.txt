@@ -2,3 +2,4 @@
 base_dir = /Users/Dan/iati/
 downloaded_files = data/
 logs_dir = logs/
+conf_dir = conf/
