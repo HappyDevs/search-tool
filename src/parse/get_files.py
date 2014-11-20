@@ -22,10 +22,11 @@ config.readfp(open(config_file, 'r'))
 base_dir = config.get('resources', 'base_dir')
 files_dir = base_dir + config.get('resources', 'downloaded_files')
 logs_dir = base_dir + config.get('resources', 'logs_dir')
+conf_dir = base_dir + config.get('resources', 'conf_dir')
 
 LOG_FILENAME = logs_dir + 'download.log'
 
-file_map = base_dir + conf_filename
+file_map = base_dir + conf_dir + conf_filename
 no_attempts = 5
 max_orgs = -1
 
