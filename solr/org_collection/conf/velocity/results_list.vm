@@ -11,7 +11,10 @@
   #end
 
 #else
-  #parse ("mlt_graph.vm")
+  #if ( $request.params.get("show_chart") == "true" )
+  	#parse ("mlt_graph.vm")
+  #end
+  
   #foreach($doc in $response.results)
     #parse("hit.vm")
     ## Can get an extremely simple view of the doc
