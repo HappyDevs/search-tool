@@ -1,13 +1,11 @@
 #**
  *  Render json data for graph
  *#
- 
- <script>
- 
- var chart_json_data = [
-			#foreach($doc in $response.results)
-                        {'$doc.getFieldValue("code")': '$doc.getFieldValue("count")'}
- 			#end
-	]
- 
- </script>
+
+<div class="json">
+[
+#foreach($doc in $response.results)
+  {"code": "$doc.getFieldValue('code')", "value": $doc.getFieldValue("count")},
+#end
+]
+</div>

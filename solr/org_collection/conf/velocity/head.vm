@@ -7,21 +7,26 @@
   <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+
+  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 	  <!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-	
+
 	<!-- Optional theme -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
-	
+
 	<!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
-  <script type="text/javascript" src="#{url_root}/js/lib/jquery-1.7.2.min.js"></script>
   <link rel="stylesheet" type="text/css" href="#{url_for_solr}/admin/file?file=/velocity/main.css&contentType=text/css"/>
   <link rel="stylesheet" type="text/css" href="#{url_for_solr}/admin/file?file=/velocity/iati_org.css&contentType=text/css"/>
   <link rel="stylesheet" href="#{url_for_solr}/admin/file?file=/velocity/jquery.autocomplete.css&contentType=text/css" type="text/css" />
   <script type="text/javascript" src="#{url_for_solr}/admin/file?file=/velocity/jquery.autocomplete.js&contentType=text/javascript"></script>
+
+  <link rel="stylesheet" href="#{url_for_solr}/admin/file?file=/velocity/vendor/c3.min.css&contentType=text/css" type="text/css" />
+  <script type="text/javascript" src="#{url_for_solr}/admin/file?file=/velocity/vendor/d3.min.js&contentType=text/javascript"></script>
+  <script type="text/javascript" src="#{url_for_solr}/admin/file?file=/velocity/vendor/c3.min.js&contentType=text/javascript"></script>
+  <script type="text/javascript" src="#{url_for_solr}/admin/file?file=/velocity/graph.js&contentType=text/javascript"></script>
 
 
     <script>
