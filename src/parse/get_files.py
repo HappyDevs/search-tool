@@ -26,7 +26,7 @@ conf_dir = base_dir + config.get('resources', 'conf_dir')
 
 LOG_FILENAME = logs_dir + 'download.log'
 
-file_map = base_dir + conf_dir + conf_filename
+file_map = conf_dir + conf_filename
 no_attempts = 5
 max_orgs = -1
 
@@ -88,6 +88,7 @@ def get_files(file_map, action, org_list_url, pkg_url):
         print 'Finish download '
     print 'Number of files: ' + str(i)
     map_file_content[0] = {'no_files': i}
+    print map_file_content
     with open(file_map, 'w') as outfile:
         json.dump(map_file_content, outfile)
     return map_file_content
