@@ -1,5 +1,5 @@
 [resources]
-base_dir = /Users/Dan/iati/
+base_dir = /opt/
 downloaded_files = data/
 logs_dir = logs/
 conf_dir = conf/
