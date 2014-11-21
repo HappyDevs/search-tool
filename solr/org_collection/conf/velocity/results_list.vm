@@ -11,7 +11,7 @@
   #end
 
 #else
-
+  #parse ("mlt_graph.vm")
   #foreach($doc in $response.results)
     #parse("hit.vm")
     ## Can get an extremely simple view of the doc

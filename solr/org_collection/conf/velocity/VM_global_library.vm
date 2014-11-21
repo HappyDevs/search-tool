@@ -176,7 +176,7 @@
       #foreach ($pivot in $pivots)
         #foreach ($entry in $pivot.value)
           <a class="list-group-item" href="#url_for_facet_filter($entry.field, $entry.value)">$entry.field -> #if($entry.value!=$null)$entry.value#else<em>missing</em>#end <span class="badge">$entry.count</span></a>
-          <ul>
+          <div class="list-group-item">
             #foreach($nest in $entry.pivot)
               <div class="list-group-item">
                 #if($nest.value != $null)
@@ -186,7 +186,7 @@
                 #end
               </div>
             #end
-          </ul>
+			</div>
         #end
       #end
     </div>
