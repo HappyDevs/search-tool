@@ -8,10 +8,16 @@
       <a class="a_title" href="#url_for_home#if($request.params.get('debugQuery'))?debugQuery=true#end">
         <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Organization Tool
       </a>
+      	<div >
+			Powered by <a href="https://lucene.apache.org/solr/">solr</a> | Hosted by <a href="http://atman.ro">atman.ro</a>
+		</div>
     </div>
     <div class="col-md-10">
       #parse('query_form.vm')
     </div>
-  </div
+  </div>
+  <div class="row">
+  	<div class="col-md-12">&nbsp;</div>
+  </div>
 </div>
 </div>
