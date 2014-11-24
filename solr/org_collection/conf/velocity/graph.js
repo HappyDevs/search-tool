@@ -33,7 +33,7 @@ $(document).ready(
             }
           },
           y: {
-            show: false
+            show: true
           }
         },
         grid: {
