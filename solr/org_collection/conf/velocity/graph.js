@@ -13,6 +13,9 @@ $(document).ready(
         color: {
           pattern: ['#007ce0']
         },
+        padding: {
+          bottom: 20
+        },
         data: {
           json: data,
           keys: {
@@ -31,6 +34,11 @@ $(document).ready(
           },
           y: {
             show: false
+          }
+        },
+        grid: {
+          y: {
+            show: true
           }
         }
       });
