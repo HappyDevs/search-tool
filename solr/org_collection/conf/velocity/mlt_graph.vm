@@ -2,7 +2,7 @@
  *  Render json data for graph
  *#
 
-<div class="json">
+<div class="json" style="min-height: 350px; margin-bottom: 30px;">
 [
 #foreach($doc in $response.results)
   {"code": "$doc.getFieldValue('code')", "value": $doc.getFieldValue("count")},
