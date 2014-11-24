@@ -11,7 +11,7 @@
   #end
 
 #else
-  #if ( $request.params.get("show_chart") == "true" )
+  #if ( $request.params.get("show_chart") )
   	#parse ("mlt_graph.vm")
   #end
   

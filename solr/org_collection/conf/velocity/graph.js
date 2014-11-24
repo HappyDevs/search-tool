@@ -6,7 +6,8 @@ $(document).ready(
     $('.json').each(function() {
       var th = $(this);
       var txtData = th.text();
-      txtData = txtData.slice(0, txtData.length - 4) + "]";
+      var end = txtData.lastIndexOf("},");
+      txtData = txtData.slice(0, end+1) + "]";
       data = JSON.parse(txtData);
       th.text("");
       th.attr("style", "");

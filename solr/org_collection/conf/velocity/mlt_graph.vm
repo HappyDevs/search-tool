@@ -5,7 +5,11 @@
 <div class="json" style="min-height: 350px; margin-bottom: 30px;">
 [
 #foreach($doc in $response.results)
+	#if ( $request.params.get("show_chart") == "true" ||  $request.params.get("show_chart") == "name"  )
   {"code": "$doc.getFieldValue('code')", "value": $doc.getFieldValue("count")},
+    #elseif ( $request.params.get("show_chart") == "code" ) 
+  {"code": "$doc.getFieldValue('name')", "value": $doc.getFieldValue("count")},
+    #end
 #end
 ]
 </div>
