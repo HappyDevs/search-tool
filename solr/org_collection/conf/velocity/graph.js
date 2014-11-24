@@ -13,6 +13,9 @@ $(document).ready(
         color: {
           pattern: ['#007ce0']
         },
+        legend:{
+          show: false
+        },
         data: {
           json: data,
           keys: {
