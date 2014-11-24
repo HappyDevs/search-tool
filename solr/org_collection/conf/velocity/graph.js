@@ -8,7 +8,7 @@ $(document).ready(
       th.text("");
       th.attr("style", "");
 
-      var chart = c3.generate({
+      chart = c3.generate({
         bindto: this,
         color: {
           pattern: ['#007ce0']
