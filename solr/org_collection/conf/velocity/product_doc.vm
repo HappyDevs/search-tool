@@ -41,11 +41,11 @@
 			
 			<tr>
 				<td><label>Locations</label></td>
-				<td><span>#field('locations')</span></td>
+				<td><span>#field_with_separator('locations')</span></td>
 			</tr>
 			<tr>
 				<td><label>Sources</label></td>
-				<td><span>#field('sources')</span></td>
+				<td><span>#field_with_separator('sources')</span></td>
 			</tr>
 			<tr>
 				<td><label>Source links</label></td>

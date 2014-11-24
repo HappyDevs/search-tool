@@ -197,7 +197,7 @@
 
 #macro(link_field $f)
 	#foreach($v in $doc.getFieldValues($f))
-		<a href="$v">$v</a>
+		[<a href="$v">$v</a>]
 	#end
 #end
 
@@ -211,6 +211,20 @@ $pad$v##
   #else
     #foreach($v in $doc.getFieldValues($f))
 $v##
+    #end
+  #end
+#end
+
+#macro(field_with_separator $f)
+  #if($response.response.highlighting.get($docId).get($f).get(0))
+    #set($pad = "")
+    #foreach($v in $response.response.highlighting.get($docId).get($f))
+$pad$v##
+      #set($pad = " ... ")
+    #end
+  #else
+    #foreach($v in $doc.getFieldValues($f))
+[$v] ##
     #end
   #end
 #end
