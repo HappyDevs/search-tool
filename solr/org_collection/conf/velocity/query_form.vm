@@ -3,7 +3,8 @@
  *#
 
 <div class="row">
-  <form id="query-form" action="#{url_for_home}" method="GET">
+  <div class="col-md-12">
+  <form id="query-form" action="#{url_for_home}" method="GET" style="margin: 0; padding: 0;">
 
     <div class="row">
       #*<span #annTitle("Add the query using the &q= parameter")>
@@ -22,18 +23,22 @@
         </span>
       </div>
       *#
-      
-      <div class="col-md-6 col-md-offset-3">
+
+      <div class="col-md-6">
 	      <div class="input-group">
 	      	<span class="input-group-addon">Search</span>
 	      	<input type="text" id="q" name="q" class="form-control" placeholder="Type your query">
 	      </div>
-	      
-	  </div>
-	  <div class="col-md-3">
-	  		<input type="submit" id="querySubmit" class="btn btn-primary"/>
-	      	<input type="reset" class="btn btn-secondary"/>
-	  </div>
+  	  </div>
+  	  <div class="col-md-2">
+  	  		<input type="submit" id="querySubmit" class="btn btn-primary"/>
+  	      	<input type="reset" class="btn btn-secondary"/>
+  	  </div>
+      <div class="col-md-4">
+        <div class="alert alert-info" style="margin: 0; padding: 8px;">
+        #parse("pagination_top.vm")
+        </div>
+      </div>
   </div>
   #*
   <div class="row">
@@ -43,6 +48,7 @@
 	</div>
   </div>
   *#
+  #*
   <div class="row">
   <div class="col-md-6 col-md-offset-3">
     #if($request.params.get('debugQuery'))
@@ -56,7 +62,7 @@
         <input type="hidden" name="fq" id="allFQs" value="$esc.html($fq)"/>
       #end
     #end
-	
+
     <div class="constraints" #annTitle("Lists out the &fq filters.  Click to remove.")>
     #if($params.getParams('fq'))
     <ol class="breadcrumb">
@@ -86,5 +92,7 @@
     </div>
   </div>
   </div>
+  *#
   </form>
+  </div>
 </div>

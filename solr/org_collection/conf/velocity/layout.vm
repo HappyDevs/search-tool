@@ -15,7 +15,7 @@
       #parse("tabs.vm")
     </div>
     *#
-    <div id="content" class="pL15">
+    <div id="content" class="container-fluid">
       $content
     </div>
     <div id="footer">

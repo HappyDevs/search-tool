@@ -1,11 +1,17 @@
 #**
  *  Render the top section of the page visible to users
  *#
-
-<div id="head">
-  	<h4 class="mL30 mT15">
-	  	<a class="a_title" href="#url_for_home#if($request.params.get('debugQuery'))?debugQuery=true#end">
-	  		<span class="glyphicon glyphicon-search" aria-hidden="true"></span> Organization Tool
-	  	</a>
-	</h4>
+<div class="container-fluid">
+<div id="head" style="margin-top: 20px;">
+  <div class="row">
+    <div class="col-xs-2">
+      <a class="a_title" href="#url_for_home#if($request.params.get('debugQuery'))?debugQuery=true#end">
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Organization Tool
+      </a>
+    </div>
+    <div class="col-xs-10">
+      #parse('query_form.vm')
+    </div>
+  </div
+</div>
 </div>
