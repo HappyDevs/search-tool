@@ -1,5 +1,8 @@
 $(document).ready(
   function (){
+    $('.facet-heading').siblings().hide();
+    $('.facet-heading').on("click", function (){ $(this).siblings().toggle(); });
+
     $('.json').each(function() {
       var th = $(this);
       var txtData = th.text();

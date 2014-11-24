@@ -19,7 +19,7 @@
 
 #macro(debug)#if($request.params.get('debugQuery'))&debugQuery=true#end#end
 
-#macro(boostPrice)#if($request.params.get('bf') == 'price')&bf=price#end#end        
+#macro(boostPrice)#if($request.params.get('bf') == 'price')&bf=price#end#end
 
 #macro(annotate)#if($request.params.get('annotateBrowse'))&annotateBrowse=true#end#end
 
@@ -35,7 +35,7 @@
 
 #macro(lensNoQ)?#if($request.params.getParams('fq') and $list.size($request.params.getParams('fq')) > 0)&#fqs($request.params.getParams('fq'))#end#sort($request.params.getParams('sort'))#debug#boostPrice#annotate#spatial#qOpts#group#end
 #macro(lens)#lensNoQ#q#end
-        
+
 
 #macro(url_for_lens)#{url_for_home}#lens#end
 
@@ -91,7 +91,7 @@
       #end
     #end
     </ul>
-  #end      
+  #end
 #end
 
 
@@ -120,8 +120,10 @@
 #end
 
 #macro(display_facet_range_with_bs $field, $display, $fieldName, $start, $end, $gap, $before, $after)
-  <h4><span class="label label-default">$display</span></h4>
-    <div class="list-group">
+  ##<h4><span class="label label-default">$display</span></h4>
+    <div class="list-group panel panel-default">
+    <div class="panel-heading facet-heading"><h3 class="panel-title">$display</h3></div>
+
     #if($before && $before != "")
       #set($value = "[* TO " + "#format_value($start)" + "}")
       #set($facetURL = "#url_for_facet_range_filter($fieldName, $value)")
@@ -211,7 +213,7 @@ $pad$v##
 $v##
     #end
   #end
-#end  
+#end
 
 #macro(utc_date $theDate)
 $date.format("yyyy-MM-dd'T'HH:mm:ss'Z'",$theDate,$date.getLocale(),$date.getTimeZone().getTimeZone("UTC"))##

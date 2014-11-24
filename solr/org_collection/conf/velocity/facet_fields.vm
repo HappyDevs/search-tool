@@ -11,9 +11,9 @@
   <div class="panel panel-default">
     ## Hide facets without value
     #if($field.values.size() > 0)
-      <div class="panel-heading"><h3 class="panel-title">$field.name</h3></div>
+      <div class="panel-heading facet-heading"><h3 class="panel-title">$field.name</h3></div>
         #foreach($facet in $field.values)
-        	<a class="list-group-item" href="#url_for_facet_filter($field.name, $facet.name)">#if($facet.name!=$null)$facet.name#else<em>missing</em>#end <span class="badge">$facet.count</span></a> 
+        	<a class="list-group-item" href="#url_for_facet_filter($field.name, $facet.name)">#if($facet.name!=$null)$facet.name#else<em>missing</em>#end <span class="badge">$facet.count</span></a>
         #end
     #end  ## end if > 0
   </div>
