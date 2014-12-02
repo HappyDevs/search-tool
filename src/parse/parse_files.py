@@ -11,6 +11,8 @@ res_dir = '../../resources/'
 conf_file = get_files.file_map
 #conf_file = res_dir + conf_filename
 
+standard_roles = ['Accountable', 'Extending', 'Funding', 'Implementing']
+
 
 def run_parse(transformer, pusher):
     with open(conf_file, 'r+') as f:
@@ -62,6 +64,14 @@ def addOrgList(result, orgID, orgList, locsDict):
     result[orgID]['counter'] += 1
 
 
+def cleanupRoleInfo(role):
+    if role:
+        stripped_role = role.strip()
+        for standard_role in standard_roles:
+            if standard_role.lower() == stripped_role.lower():
+                return standard_role
+
+
 def parse(file, orgs, result, name, url):
    # actST = 0
     items = {}
@@ -91,6 +101,7 @@ def parse(file, orgs, result, name, url):
                         item['sourceURL'] = unicode(url)
                         if 'role' in elem.attrib:
                             item['orgRole'] = unicode(elem.attrib['role'])
+                            item['orgRole'] = cleanupRoleInfo(item['orgRole'])
                         item['location'] = []
                         if orgID not in items:
                             items[orgID] = [item]
