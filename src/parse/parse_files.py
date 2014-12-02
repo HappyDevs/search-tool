@@ -71,6 +71,8 @@ def cleanupRoleInfo(role):
             if standard_role.lower() == stripped_role.lower():
                 return standard_role
 
+    return role
+
 
 def parse(file, orgs, result, name, url):
    # actST = 0
