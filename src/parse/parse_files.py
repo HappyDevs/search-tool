@@ -5,7 +5,7 @@ from __builtin__ import file
 import get_files as get_files
 
 #configurations or params
-orgs = ['participating-org', 'reporting_org', 'provider-org', 'receiver-org']
+orgs = ['participating-org', 'reporting-org', 'provider-org', 'receiver-org']
 # result = {}
 res_dir = '../../resources/'
 conf_file = get_files.file_map
